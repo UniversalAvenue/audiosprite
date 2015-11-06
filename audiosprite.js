@@ -228,7 +228,7 @@ module.exports = function(files) {
     }
     
     if (opts.writeXing || opts.writeXing === 0) {
-      formats.mp3 = formats.mp3.concat(['-write-xing', opts.writeXing])
+      formats.mp3 = formats.mp3.concat(['-write_xing', opts.writeXing])
     }
 
     if (opts.export.length) {
