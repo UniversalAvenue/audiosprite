@@ -18,6 +18,7 @@ var defaults = {
   samplerate: 44100,
   channels: 1,
   rawparts: '',
+  writeXing: '',
   logger: {
     debug: function(){},
     info: function(){},
@@ -224,6 +225,10 @@ module.exports = function(files) {
     }
     else {
       formats.mp3 = formats.mp3.concat(['-ab', opts.bitrate + 'k'])
+    }
+    
+    if (opts.writeXing) {
+      formats.mp3 = formats.mp3.concat(['-write-xing', opts.writeXing])
     }
 
     if (opts.export.length) {
