@@ -227,7 +227,7 @@ module.exports = function(files) {
       formats.mp3 = formats.mp3.concat(['-ab', opts.bitrate + 'k'])
     }
     
-    if (opts.writeXing) {
+    if (opts.writeXing || opts.writeXing === 0) {
       formats.mp3 = formats.mp3.concat(['-write-xing', opts.writeXing])
     }
 
