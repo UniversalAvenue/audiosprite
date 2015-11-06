@@ -66,6 +66,11 @@ var optimist = require('optimist')
   , 'default': -1
   , describe: 'VBR [0-9]. Works for: mp3. -1 disables VBR.'
   })
+  .options('writeXing', {
+    alias: 'x'
+  , 'default': null
+  , describe: 'Write xing header. Works for: mp3'
+  })
   .options('samplerate', {
     alias: 'r'
   , 'default': 44100
@@ -105,6 +110,7 @@ opts.channels = parseInt(argv.channels, 10)
 opts.gap = parseFloat(argv.gap)
 opts.minlength = parseFloat(argv.minlength)
 opts.vbr = parseInt(argv.vbr, 10)
+opts.writeXing = parseInt(argv.writeXing, 10)
 
 opts.loop = argv.loop ? [].concat(argv.loop) : []
 
