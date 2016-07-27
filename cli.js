@@ -66,10 +66,17 @@ var optimist = require('optimist')
   , 'default': -1
   , describe: 'VBR [0-9]. Works for: mp3. -1 disables VBR.'
   })
+<<<<<<< HEAD
   .options('writeXing', {
     alias: 'x'
   , 'default': null
   , describe: 'Write xing header. Works for: mp3'
+=======
+  .options('vbr:vorbis', {
+    alias: 'q'
+    , 'default': -1
+    , describe: 'qscale [0-10 is highest quality]. Works for: webm. -1 disables qscale.'
+>>>>>>> master
   })
   .options('samplerate', {
     alias: 'r'
@@ -110,11 +117,26 @@ opts.channels = parseInt(argv.channels, 10)
 opts.gap = parseFloat(argv.gap)
 opts.minlength = parseFloat(argv.minlength)
 opts.vbr = parseInt(argv.vbr, 10)
+<<<<<<< HEAD
 opts.writeXing = parseInt(argv.writeXing, 10)
+=======
+opts['vbr:vorbis'] = parseInt(argv['vbr:vorbis'], 10)
+>>>>>>> master
 
 opts.loop = argv.loop ? [].concat(argv.loop) : []
 
 var files = _.uniq(argv._)
+
+if (process.platform == 'win32') {
+  var glob = require('glob');
+  function flatten(arr){
+    return [].concat.apply([], arr);
+  }
+  function getNames(fname){
+	return (glob.hasMagic(fname)) ? glob.sync(fname) : [fname];
+  }
+  files = flatten(files.map(getNames));
+}
 
 if (argv.help || !files.length) {
   if (!argv.help) {
